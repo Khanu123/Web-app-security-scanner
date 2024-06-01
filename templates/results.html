@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<head><title>Scan Results</title></head>
+<body>
+    <h1>Scan Results for {{ url }}</h1>
+    <ul>
+        {% for result in results %}
+        <li>{{ result }}</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back</a>
+</body>
+</html>
