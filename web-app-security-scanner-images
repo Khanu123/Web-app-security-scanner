@@ -1,2 +1,5 @@
 git clone https://github.com/yourusername/web-app-security-scanner.git
 cd web-app-security-scanner
+
+mkdir images examples
+touch app.py requirements.txt
