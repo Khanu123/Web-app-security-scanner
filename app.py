@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template
 import requests
-from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
@@ -11,11 +10,13 @@ def home():
 @app.route('/scan', methods=['POST'])
 def scan():
     url = request.form['url']
-    results = scan_for_vulnerabilities(url)
-    return render_template('results.html', url=url, results=results)
+    try:
+        results = scan_for_vulnerabilities(url)
+        return render_template('results.html', url=url, results=results)
+    except requests.exceptions.RequestException as e:
+        return f"An error occurred: {e}"
 
 def scan_for_vulnerabilities(url):
-    # Simple SQL Injection test
     payloads = ["'", "' OR '1'='1", "' OR '1'='1' -- "]
     results = []
     for payload in payloads:
